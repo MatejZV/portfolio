@@ -28,22 +28,28 @@ Every page includes the same semantic header, Settings control, footer, styleshe
 - `js/translations.js`: matching English, Slovenian, and German translation dictionaries.
 - `js/i18n.js`: saved language, safe DOM translation, and native language buttons.
 - `js/script.js`: shared navigation, translated project rendering/form feedback, guarded contact initialization, and automatic year. Pages without a gallery/form skip that initialization safely.
-- `assets/`: unchanged technology logos, licenses, and certificate PDFs.
+- `assets/`: technology logos, licenses, original certificate PDFs, and generated WebP previews.
 - `tests/`: Node.js/Python checks; these do not run in the website.
 
 ## Certificates
 
 Background includes the two existing Codecademy certificates followed by the Udemy **C# Intermediate: Classes, Interfaces and OOP** certificate. The Udemy course was taught by **Mosh Hamedani**, completed on **May 4, 2020**, and has a duration of **6 hours**. Its type is **Certificate of Completion**.
 
-The supplied PDF is stored at `assets/certificates/udemy-csharp-intermediate.pdf` and opens in a new tab from its certificate card. The compact card shows “C# Intermediate”; its full official title remains in the heading tooltip and the accessible PDF-link name. All three certificate cards show only their issuing platform, title, and a small View Certificate link. English, Slovenian, and German translations cover the link text and accessible names. Course details remain in this documentation and the original PDFs. Static checks verify the third card and local PDF reference; language tests cover it in all three languages.
+All three compact certificate cards keep their platform, title, and View Certificate link. Each link opens a WebP image in a native modal dialog on the same page; without JavaScript or modal-dialog support, it opens the image directly. The Udemy card keeps “C# Intermediate” with its full course title in the tooltip and accessible preview-link name. The dialog includes a secondary link to open the unchanged original PDF in a new tab.
+
+`js/certificates.js` loads only on Background. Preview images load only when selected. The dialog supports Escape, a 44px-minimum Close button, outside clicks, explicit Tab wrapping, native background inertness, focus restoration, and body-scroll locking. Enlarge image toggles the full-resolution image inside a keyboard- and touch-scrollable region. Browser zoom remains available. Image-load failures show translated feedback and retain access to the original PDF. Controls, help, and accessible labels support English, Slovenian, and German and use the current theme colors.
+
+The three full-page WebP previews were rendered directly from the original one-page PDFs with Poppler (`pdftoppm -singlefile -scale-to 2400 -png`) and encoded with Pillow at WebP quality 88, method 6. No certificate content was edited or cropped. Codecademy previews are 1697×2400 (148,336 and 150,956 bytes); Udemy is 2400×1785 (414,506 bytes). If a PDF is replaced, regenerate its matching WebP. Keep the three PDFs, previews, and all paths under `assets/certificates/`; paths remain relative for GitHub Pages project sites.
+
+`tests/certificates.cjs` checks the three preview/PDF pairs, asset signatures, accessible markup, lazy opening, focus boundaries/restoration, close/backdrop behavior, zoom, error fallback, and progressive enhancement. Real-browser checks additionally verified all three previews at 1440×1000 and 390×844 in both themes, including native Escape, keyboard focus containment, scrolling availability, and all three languages.
 
 ## Color themes
 
 The design uses Warm Espresso & Soft Copper in dark mode and Cream & Muted Terracotta in light mode, with shared typography, spacing, card shapes, and navigation. Theme colors live in CSS custom properties, including feedback states, tags, buttons, and focus outlines. Technology logos retain their original colors against a neutral backing.
 
-The header **Settings** button opens one panel with a labelled **Theme** (Dark / Light) selector. The native control exposes the current selection, supports standard keyboard navigation, and has visible focus in both palettes. A Language section beneath it offers English, Slovenščina, and Deutsch.
+The header **Settings** button opens one panel with a labelled **Theme** (System / Dark / Light) selector. The native control exposes the current selection, supports standard keyboard navigation, and has visible focus in both palettes. A Language section beneath it offers English, Slovenščina, and Deutsch.
 
-On first visit, the site follows the system color scheme. Explicitly selecting a theme stores `portfolio-theme` in local storage. Without a saved choice, system changes apply automatically. Theme preferences synchronize across tabs; if storage is unavailable, switching still works for the current page. The small blocking `js/theme.js` script runs before the stylesheet to select the palette before rendering. With JavaScript disabled, CSS follows the system palette and hides the inactive toggle. No theme animations are added; existing reduced-motion support is retained.
+On first visit, the site follows the system color scheme. Explicitly selecting a theme stores `portfolio-theme` in local storage. Selecting System follows system changes again and persists that mode across navigation and refresh. Without a saved choice, system changes apply automatically. Theme preferences synchronize across tabs; if storage is unavailable, switching still works for the current page. The small blocking `js/theme.js` script runs before the stylesheet to select the palette before rendering. With JavaScript disabled, CSS follows the system palette and hides the inactive toggle. No theme animations are added; existing reduced-motion support is retained.
 
 The theme checks cover saved/system choices, live system changes, persistence, storage failures, cross-tab changes, and accessibility attributes. Actual first-paint behavior, responsive appearance, and keyboard/screen-reader output still require browser verification.
 
@@ -143,12 +149,14 @@ node --check js/script.js
 node --check js/theme.js
 node --check js/translations.js
 node --check js/i18n.js
+node --check js/certificates.js
 node tests/display.cjs
 node tests/theme.cjs
 node tests/navigation.cjs
 node tests/projects.cjs
 node tests/contact.cjs
 node tests/i18n.cjs
+node tests/certificates.cjs
 python3 tests/static.py
 ```
 
@@ -158,7 +166,7 @@ The JavaScript checks use small DOM stand-ins and mocked requests. They cover me
 
 Before cleanup, both syntax checks and the display, theme, navigation, and contact tests passed. The project and static tests failed because they still required the intentionally removed Home hero button. Those assertions now check the existing Projects navigation link; the static test also retains its ordered primary-navigation checks on every page. All eleven commands above pass after the footer and multilingual updates. Home contains only Hero/editor → About Me → Contact CTA; the original biography is preserved and the separate About page is removed. Background combines Education, Skills, and Certificates in that order; the former separate pages have been removed and internal links updated. Navigation/Settings behavior is checked on every page, including first-link focus, Escape, outside clicks, resize, and skip-link focus. Theme tests cover all-page markup and cross-page saved preferences. The gallery renders both projects only on Projects; Home is checked to contain no gallery or cards; pages without a gallery initialize safely. Contact mocks still cover validation, service acceptance, HTTP/network failures, the 15-second timeout, duplicate prevention, preserved values, and control cleanup. No real contact requests are made.
 
-The warm palette and contrast tests remain intact. Certificate PDFs, project data, About text, education and skill details, and the contact endpoint are preserved. Browser rendering is unavailable: actual page layouts, horizontal overflow, zoom, focus appearance, and PDF opening still need browser verification. The cleanup removes confirmed unused selectors, duplicate responsive declarations, inactive About grid rules, overridden CTA Flexbox styling, and comments that merely narrate code. Current layout values and mobile behavior are preserved.
+The warm palette and contrast tests remain intact. Certificate PDFs, project data, About text, education and skill details, and the contact endpoint are preserved. Certificate lightbox browser checks are documented above; a full manual accessibility and responsive review of the entire site remains advisable. The cleanup removes confirmed unused selectors, duplicate responsive declarations, inactive About grid rules, overridden CTA Flexbox styling, and comments that merely narrate code. Current layout values and mobile behavior are preserved.
 
 ### Browser verification before launch
 

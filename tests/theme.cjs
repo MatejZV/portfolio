@@ -20,8 +20,8 @@ for (const dark of [true,false]) {
     const s=setup({dark});
     assert.equal(s.attrs['data-theme'],dark?'dark':'light');assert(s.control.hidden);
     assert.equal(s.store.size,0);s.mount();assert.equal(s.control.hidden,false);
-    assert.equal(s.select.value,dark?'dark':'light');
-    s.media.matches=!dark;s.media.change();assert.equal(s.attrs['data-theme'],dark?'light':'dark');assert.equal(s.select.value,s.attrs['data-theme']);
+    assert.equal(s.select.value,'system');
+    s.media.matches=!dark;s.media.change();assert.equal(s.attrs['data-theme'],dark?'light':'dark');assert.equal(s.select.value,'system');
 }
 for (const saved of ['dark','light']) {
     const s=setup({saved,dark:saved==='light'});s.mount();
@@ -38,6 +38,22 @@ const explicit=setup({dark:true});explicit.mount();explicit.choose('light');expl
 const invalid=setup({saved:'invalid',dark:true});assert.equal(invalid.attrs['data-theme'],'dark');
 const blocked=setup({storageFails:true,dark:false});blocked.mount();blocked.choose('dark');assert.equal(blocked.attrs['data-theme'],'dark');
 blocked.media.matches=false;blocked.media.change();assert.equal(blocked.attrs['data-theme'],'dark');
+// Returning to System must preserve the mode rather than its current resolved color.
+for (const dark of [true,false]) {
+    const s=setup({saved:dark?'light':'dark',dark});s.mount();s.choose('system');
+    assert.equal(s.select.value,'system');assert.equal(s.store.get('portfolio-theme'),'system');
+    assert.equal(s.attrs['data-theme'],dark?'dark':'light');
+    s.media.matches=!dark;s.media.change();
+    assert.equal(s.attrs['data-theme'],dark?'light':'dark');assert.equal(s.select.value,'system');
+    const reload=setup({saved:s.store.get('portfolio-theme'),dark});reload.mount();
+    assert.equal(reload.select.value,'system');assert.equal(reload.attrs['data-theme'],dark?'dark':'light');
+    s.store.set('portfolio-theme','dark');s.winEvents.storage({key:'portfolio-theme'});
+    s.store.set('portfolio-theme','system');s.winEvents.storage({key:'portfolio-theme'});
+    assert.equal(s.select.value,'system');assert.equal(s.attrs['data-theme'],s.media.matches?'dark':'light');
+}
+blocked.choose('system');assert.equal(blocked.select.value,'system');
+blocked.media.matches=true;blocked.media.change();assert.equal(blocked.attrs['data-theme'],'dark');
+console.log('Passed: explicit System mode, live system changes, persistence/reload, cross-tab return to System, and blocked storage.');
 const html=fs.readFileSync('index.html','utf8');
 assert.match(html,/<label class="theme-control" for="theme-choice" hidden>/);
 assert.match(html,/<select id="theme-choice" name="theme-choice" aria-label="Theme" data-i18n-aria-label="settings.theme">/);
@@ -78,6 +94,7 @@ for(const page of ['index','projects','background','contact']) {
     assert(html.indexOf('<script src="js/theme.js"></script>')<html.indexOf('<link rel="stylesheet"'));
     assert.match(html,/<select id="theme-choice" name="theme-choice" aria-label="Theme" data-i18n-aria-label="settings.theme">/);
     assert.equal((html.match(/id="theme-choice"/g)||[]).length,1);
+    assert.match(html,/<option value="system" data-i18n="settings.system">System<\/option>/);
     for(const theme of ['dark','light']) {
         const s=setup({saved:theme,dark:theme==='light'});s.mount();assert.equal(s.select.value,theme);
         const other=theme==='dark'?'light':'dark';s.choose(other);

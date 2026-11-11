@@ -29,7 +29,7 @@ class Audit(HTMLParser):
             assert 'alt' in a
             self.images.append(a)
         if tag == 'a' and a.get('target') == '_blank': assert {'noopener','noreferrer'} <= set(a.get('rel','').split())
-        for key in ('href','src'):
+        for key in ('href','src','data-certificate-pdf'):
             if a.get(key): self.assets.append(a[key])
     def handle_endtag(self, tag):
         assert self.stack and self.stack.pop() == tag, f'Bad nesting: {tag}'
@@ -88,6 +88,7 @@ for reference in re.findall(r'url\([\s\'"]*([^\)\'\"]+)',(root/'css/style.css').
 certificates = (root/'background.html').read_text()
 for key in ['csharp','javascript']:
     assert f'assets/certificates/codecademy-learn-{key}.pdf' in certificates
+    assert f'assets/certificates/codecademy-learn-{key}.webp' in certificates
 certificate_section = re.search(r'<section\b[^>]*id="learning"[\s\S]*?</section>', certificates).group()
 certificate_cards = re.findall(r'<article class="learning-card"[\s\S]*?</article>', certificate_section)
 assert len(certificate_cards) == 3
@@ -99,7 +100,7 @@ for card in certificate_cards:
     assert 'learning-card-header' not in card and 'learning-completion' not in card
     assert len(re.findall(r'<h3\b', card)) == 1
     assert 'class="learning-provider"' in card and 'class="certificate-link"' in card
-assert re.search(r'<a\b(?=[^>]*href="assets/certificates/udemy-csharp-intermediate.pdf")(?=[^>]*target="_blank")(?=[^>]*rel="noopener noreferrer")[^>]*>', udemy)
+assert re.search(r'<a\b(?=[^>]*href="assets/certificates/udemy-csharp-intermediate.webp")(?=[^>]*data-certificate-pdf="assets/certificates/udemy-csharp-intermediate.pdf")[^>]*>', udemy)
 home = (root/'index.html').read_text()
 assert home.index('id="home"') < home.index('id="about"') < home.index('class="closing-cta"')
 assert 'Always Learning' not in home

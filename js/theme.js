@@ -3,24 +3,24 @@
     const root = document.documentElement;
     const preference = window.matchMedia("(prefers-color-scheme: dark)");
     const storageKey = "portfolio-theme";
-    let chosenTheme = null;
+    let chosenTheme = "system";
     let select;
 
     function readTheme() {
         try {
             const value = window.localStorage.getItem(storageKey);
-            return value === "dark" || value === "light" ? value : null;
+            return value === "dark" || value === "light" ? value : "system";
         } catch {
-            return null;
+            return "system";
         }
     }
 
     function applyTheme() {
-        const theme = chosenTheme || (preference.matches ? "dark" : "light");
+        const theme = chosenTheme === "system" ? (preference.matches ? "dark" : "light") : chosenTheme;
         root.setAttribute("data-theme", theme);
         const themeColor = document.querySelector('meta[name="theme-color"]');
         if (themeColor) themeColor.setAttribute("content", theme === "dark" ? "#211D1B" : "#FAF6F0");
-        if (select) select.value = theme;
+        if (select) select.value = chosenTheme;
     }
 
     chosenTheme = readTheme();
@@ -40,7 +40,7 @@
         const control = document.querySelector(".theme-control");
         if (!select || !control) return;
         select.addEventListener("change", () => {
-            if (select.value !== "dark" && select.value !== "light") {
+            if (!["dark", "light", "system"].includes(select.value)) {
                 applyTheme();
                 return;
             }

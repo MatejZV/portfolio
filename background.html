@@ -28,6 +28,7 @@
 
     <!-- JavaScript loads after the HTML is parsed -->
     <script src="js/script.js" defer></script>
+    <script src="js/certificates.js" defer></script>
 </head>
 
 <body>
@@ -58,6 +59,7 @@
                         <label class="theme-control" for="theme-choice" hidden>
                             <span data-i18n="settings.theme">Theme</span>
                             <select id="theme-choice" name="theme-choice" aria-label="Theme" data-i18n-aria-label="settings.theme">
+                                <option value="system" data-i18n="settings.system">System</option>
                                 <option value="dark" data-i18n="settings.dark">Dark</option>
                                 <option value="light" data-i18n="settings.light">Light</option>
                             </select>
@@ -233,7 +235,7 @@
                         <h3 id="csharp-course-heading">Learn C# Course</h3>
                     </div>
                     <div class="learning-certificate">
-                        <a class="certificate-link" href="assets/certificates/codecademy-learn-csharp.pdf" target="_blank" rel="noopener noreferrer" aria-label="View Certificate for Learn C# Course (PDF, opens in a new tab)" data-i18n-aria-label="certificate.csharpLabel"><span data-i18n="certificate.view">View Certificate</span> <svg class="certificate-external-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></a>
+                        <a class="certificate-link" href="assets/certificates/codecademy-learn-csharp.webp" data-certificate-preview data-certificate-pdf="assets/certificates/codecademy-learn-csharp.pdf" data-certificate-heading="csharp-course-heading" aria-label="View Certificate for Learn C# Course (image preview)" data-i18n-aria-label="certificate.csharpLabel"><span data-i18n="certificate.view">View Certificate</span> <svg class="certificate-external-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></a>
                     </div>
                 </article>
 
@@ -243,7 +245,7 @@
                         <h3 id="javascript-course-heading">Learn JavaScript Course</h3>
                     </div>
                     <div class="learning-certificate">
-                        <a class="certificate-link" href="assets/certificates/codecademy-learn-javascript.pdf" target="_blank" rel="noopener noreferrer" aria-label="View Certificate for Learn JavaScript Course (PDF, opens in a new tab)" data-i18n-aria-label="certificate.jsLabel"><span data-i18n="certificate.view">View Certificate</span> <svg class="certificate-external-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></a>
+                        <a class="certificate-link" href="assets/certificates/codecademy-learn-javascript.webp" data-certificate-preview data-certificate-pdf="assets/certificates/codecademy-learn-javascript.pdf" data-certificate-heading="javascript-course-heading" aria-label="View Certificate for Learn JavaScript Course (image preview)" data-i18n-aria-label="certificate.jsLabel"><span data-i18n="certificate.view">View Certificate</span> <svg class="certificate-external-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></a>
                     </div>
                 </article>
 
@@ -253,13 +255,32 @@
                         <h3 id="udemy-csharp-course-heading" title="C# Intermediate: Classes, Interfaces and OOP">C# Intermediate</h3>
                     </div>
                     <div class="learning-certificate">
-                        <a class="certificate-link" href="assets/certificates/udemy-csharp-intermediate.pdf" target="_blank" rel="noopener noreferrer" aria-label="View Certificate for C# Intermediate: Classes, Interfaces and OOP (PDF, opens in a new tab)" data-i18n-aria-label="certificate.udemyLabel"><span data-i18n="certificate.view">View Certificate</span> <svg class="certificate-external-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></a>
+                        <a class="certificate-link" href="assets/certificates/udemy-csharp-intermediate.webp" data-certificate-preview data-certificate-pdf="assets/certificates/udemy-csharp-intermediate.pdf" data-certificate-heading="udemy-csharp-course-heading" aria-label="View Certificate for C# Intermediate: Classes, Interfaces and OOP (image preview)" data-i18n-aria-label="certificate.udemyLabel"><span data-i18n="certificate.view">View Certificate</span> <svg class="certificate-external-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></a>
                     </div>
                 </article>
             </div>
 
         </section>
     </main>
+
+    <dialog id="certificate-dialog" class="certificate-dialog" aria-labelledby="certificate-dialog-title" aria-describedby="certificate-course">
+        <div class="certificate-panel">
+            <div class="certificate-toolbar">
+                <h2 id="certificate-dialog-title" data-i18n="certificate.previewTitle">Certificate preview</h2>
+                <button type="button" id="certificate-close" autofocus data-i18n="certificate.close">Close</button>
+            </div>
+            <p id="certificate-course"></p>
+            <div class="certificate-preview-actions">
+                <button type="button" id="certificate-zoom" aria-pressed="false" aria-controls="certificate-viewport" data-i18n="certificate.zoom">Enlarge image</button>
+                <a id="certificate-pdf" target="_blank" rel="noopener noreferrer" data-i18n="certificate.pdf">Open original PDF (new tab)</a>
+            </div>
+            <p id="certificate-help" data-i18n="certificate.help">Enlarge the image and scroll to read details. You can also use your browser’s zoom.</p>
+            <p id="certificate-error" role="status" hidden data-i18n="certificate.error">The preview could not load. Please open the original PDF.</p>
+            <div id="certificate-viewport" class="certificate-viewport" tabindex="0" role="region" aria-label="Certificate image" data-i18n-aria-label="certificate.imageRegion" aria-describedby="certificate-help">
+                <img id="certificate-image" alt="" decoding="async">
+            </div>
+        </div>
+    </dialog>
 
     <footer class="site-footer">
         <p>&copy; <span id="current-year">2026</span> <span data-i18n="footer.rights">Matej ZV. All rights reserved.</span></p>

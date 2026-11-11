@@ -141,6 +141,12 @@ function setup(page,{saved=null,blocked=false,fetch=async()=>({ok:true,status:20
         // Theme changes must not change the language, and language changes must not change theme.
         s.api.setLanguage('sl');const themeSelect=s.document.getElementById('theme-choice');themeSelect.value='light';await themeSelect.fire('change');
         assert.equal(s.api.language,'sl');assert.equal(s.document.documentElement.attrs['data-theme'],'light');s.api.setLanguage('de');assert.equal(themeSelect.value,'light');
+        themeSelect.value='system';await themeSelect.fire('change');
+        for(const lang of ['en','sl','de']) {
+            s.api.setLanguage(lang);assert.equal(themeSelect.value,'system');
+            assert.equal(s.store.get('portfolio-theme'),'system');
+            assert.equal(s.document.documentElement.attrs['data-theme'],'light');
+        }
         // Escape behavior remains owned by the existing Settings code.
         const settings=s.document.getElementById('settings-toggle');await settings.fire('click');assert(!s.document.getElementById('settings-panel').hidden);
         await s.document.fire('keydown',{key:'Escape'});assert(s.document.getElementById('settings-panel').hidden);assert(settings.focused);
