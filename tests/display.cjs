@@ -95,6 +95,7 @@ console.log('Passed: centered 1320px Home cap, fluid gutters, connected 55/45 he
 // Certifications have their own layout; the shared Education grid stays at two columns.
 assert.match(css,/\.learning-grid\s*\{[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);[^}]*grid-auto-rows: 1fr;/);
 assert.match(css,/\.learning-section \.learning-grid\s*\{[^}]*grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);/);
+assert.match(css,/\.learning-section \.learning-grid\s*\{[^}]*grid-auto-rows: auto;/);
 assert.match(css,/@media \(max-width: 1000px\)\s*\{\s*\.learning-section \.learning-grid\s*\{\s*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/);
 assert.match(css,/@media \(max-width: 600px\)\s*\{\s*\.learning-section \.learning-grid\s*\{\s*grid-template-columns: minmax\(0, 1fr\);/);
 assert.match(css,/\.learning-section \.learning-card\s*\{[^}]*gap: 0\.5rem;[^}]*padding: 1rem;/);

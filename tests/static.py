@@ -92,15 +92,21 @@ for key in ['csharp','javascript']:
 certificate_section = re.search(r'<section\b[^>]*id="learning"[\s\S]*?</section>', certificates).group()
 certificate_cards = re.findall(r'<article class="learning-card"[\s\S]*?</article>', certificate_section)
 assert len(certificate_cards) == 3
-udemy = certificate_cards[2]
-assert '<h3 id="udemy-csharp-course-heading" title="C# Intermediate: Classes, Interfaces and OOP">C# Intermediate</h3>' in udemy
-assert '<p class="learning-provider">Udemy</p>' in udemy
-assert 'data-i18n-aria-label="certificate.udemyLabel"' in udemy
+intermediate = certificate_cards[2]
+assert '<h3 id="intermediate-course-heading">Learn Intermediate C#</h3>' in intermediate
+assert 'data-i18n="status.progress">In Progress' in intermediate
+assert 'data-i18n="course.progress">Progress snapshot: 40%' in intermediate
+assert 'data-i18n="status.completed"' not in intermediate
+assert 'data-certificate-preview' not in intermediate and '<img' not in intermediate
+assert 'href="https://www.codecademy.com/enrolled/courses/learn-intermediate-c-sharp"' in intermediate
+assert '<details class="course-details">' in intermediate
+assert certificates.count('data-certificate-preview') == 2
+for card in certificate_cards[:2]:
+    assert 'data-i18n="status.completed">Completed' in card
 for card in certificate_cards:
     assert 'learning-card-header' not in card and 'learning-completion' not in card
     assert len(re.findall(r'<h3\b', card)) == 1
     assert 'class="learning-provider"' in card and 'class="certificate-link"' in card
-assert re.search(r'<a\b(?=[^>]*href="assets/certificates/udemy-csharp-intermediate.webp")(?=[^>]*data-certificate-pdf="assets/certificates/udemy-csharp-intermediate.pdf")[^>]*>', udemy)
 home = (root/'index.html').read_text()
 assert home.index('id="home"') < home.index('id="about"') < home.index('class="closing-cta"')
 assert 'Always Learning' not in home

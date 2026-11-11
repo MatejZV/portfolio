@@ -4,11 +4,10 @@
     if (!dialog || typeof dialog.showModal !== 'function') return;
     const image = dialog.querySelector('img');
     const title = dialog.querySelector('#certificate-course');
-    const pdf = dialog.querySelector('#certificate-pdf');
     const close = dialog.querySelector('#certificate-close');
-    const zoom = dialog.querySelector('#certificate-zoom');
     const viewport = dialog.querySelector('.certificate-viewport');
     const error = dialog.querySelector('#certificate-error');
+    const topics = dialog.querySelectorAll('[data-certificate-topics]');
     let opener;
     let previousOverflow;
 
@@ -23,12 +22,12 @@
             const heading = document.getElementById(link.dataset.certificateHeading);
             title.textContent = heading.title || heading.textContent;
             image.alt = title.textContent;
-            pdf.href = link.dataset.certificatePdf;
+            topics.forEach(panel => {
+                panel.hidden = panel.dataset.certificateTopics !== link.dataset.certificateHeading;
+            });
             error.hidden = true;
             image.hidden = false;
             image.src = link.href;
-            zoom.setAttribute('aria-pressed', 'false');
-            viewport.classList.remove('is-zoomed');
             previousOverflow = document.body.style.overflow;
             document.body.style.overflow = 'hidden';
             dialog.showModal();
@@ -60,11 +59,6 @@
         document.body.style.overflow = previousOverflow;
         image.removeAttribute('src');
         opener?.focus({ preventScroll: true });
-    });
-    zoom.addEventListener('click', () => {
-        const enlarged = zoom.getAttribute('aria-pressed') !== 'true';
-        zoom.setAttribute('aria-pressed', String(enlarged));
-        viewport.classList.toggle('is-zoomed', enlarged);
     });
     image.addEventListener('error', () => {
         image.hidden = true;

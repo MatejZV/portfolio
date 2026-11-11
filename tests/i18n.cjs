@@ -81,7 +81,7 @@ function parse(html){
 const scripts=Object.fromEntries(['translations','i18n','theme','script'].map(n=>[n,fs.readFileSync(`js/${n}.js`,'utf8')]));
 function setup(page,{saved=null,blocked=false,fetch=async()=>({ok:true,status:200}),theme='dark'}={}){
     const document=parse(fs.readFileSync(`${page}.html`,'utf8'));
-    const unchanged=new Set(['Matej','ZV','GitHub','HTML','CSS','JavaScript','TypeScript','SQL','Git','C#','Academia Maribor','SERŠ Maribor','Codecademy','Udemy','Mosh Hamedani','C# Intermediate','C# Intermediate: Classes, Interfaces and OOP','Learn C# Course','Learn JavaScript Course','developer.js','English','Slovenščina','Deutsch','🇬🇧','🇸🇮','🇩🇪','✓','→','↗','☰','©','2026']);
+    const unchanged=new Set(['Matej','ZV','GitHub','HTML','CSS','JavaScript','TypeScript','SQL','Git','C#','Academia Maribor','SERŠ Maribor','Codecademy','Learn Intermediate C#','Learn C# Course','Learn JavaScript Course','developer.js','English','Slovenščina','Deutsch','🇬🇧','🇸🇮','🇩🇪','✓','→','↗','☰','©','2026']);
     function checkCoverage(node,exempt=false){
         exempt ||= ['script','pre'].includes(node.tag) || node.getAttribute('data-i18n')!==null || node.classList.contains('hero-visual');
         for(const child of node.children){
@@ -151,18 +151,19 @@ function setup(page,{saved=null,blocked=false,fetch=async()=>({ok:true,status:20
         const settings=s.document.getElementById('settings-toggle');await settings.fire('click');assert(!s.document.getElementById('settings-panel').hidden);
         await s.document.fire('keydown',{key:'Escape'});assert(s.document.getElementById('settings-panel').hidden);assert(settings.focused);
         if(page==='background'){
-            const certificateLinks=s.document.querySelectorAll('.certificate-link');assert.equal(certificateLinks.length,3);
-            const udemy=s.document.getElementById('udemy-csharp-course-heading');
-            assert.equal(udemy.textContent,'C# Intermediate');
-            assert.equal(udemy.attrs.title,'C# Intermediate: Classes, Interfaces and OOP');
-            const card=udemy.parent.parent;
+            const certificateLinks=s.document.querySelectorAll('[data-certificate-preview]');assert.equal(certificateLinks.length,2);
+            const course=s.document.getElementById('intermediate-course-heading');
+            assert.equal(course.textContent,'Learn Intermediate C#');
+            const card=course.parent.parent;
             for(const lang of ['en','sl','de']){
                 s.api.setLanguage(lang);
-                assert.equal(card.querySelector('.certificate-link').attrs['aria-label'],dictionaries[lang]['certificate.udemyLabel']);
-                assert.equal(card.querySelector('.learning-provider').textContent,'Udemy');
+                assert.equal(card.querySelector('.learning-provider').textContent,'Codecademy');
+                assert.equal(card.querySelector('.course-status').textContent,dictionaries[lang]['status.progress']);
+                assert.equal(card.querySelector('.course-progress').textContent,dictionaries[lang]['course.progress']);
+                assert.equal(card.querySelector('summary').textContent,dictionaries[lang]['course.topicsCompleted']);
+                assert.equal(card.querySelector('.certificate-link').textContent,dictionaries[lang]['course.view']);
                 for(const link of certificateLinks)assert.equal(link.textContent.trim().replace(/\s+/g,' '),dictionaries[lang]['certificate.view']);
-                assert.equal(udemy.textContent,'C# Intermediate');
-                assert.equal(udemy.attrs.title,'C# Intermediate: Classes, Interfaces and OOP');
+                assert.equal(course.textContent,'Learn Intermediate C#');
             }
         }
         if(page==='projects'){
