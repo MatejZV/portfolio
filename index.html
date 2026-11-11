@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding and responsive viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page information -->
+    <meta name="description" content="Home — Matej ZV’s developer portfolio, education, projects, and continued learning." data-i18n-content="meta.home.description">
+    <meta name="theme-color" content="#211D1B">
+    <link rel="icon" type="image/svg+xml" sizes="any" href="assets/icons/favicon.svg">
+    <title data-i18n="meta.home.title">Matej ZV | Aspiring Software Developer</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Matej ZV | Aspiring Software Developer" data-i18n-content="meta.home.title">
+    <meta property="og:description" content="Home — Matej ZV’s developer portfolio, education, projects, and continued learning." data-i18n-content="meta.home.description">
+    <meta name="twitter:card" content="summary">
+    <!-- Add a canonical link and og:url once the final public URL is known.
+         Add og:image only when a real share image has been supplied. -->
+
+    <!-- Select the saved/system theme before styles render. -->
+    <script src="js/theme.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/i18n.js"></script>
+
+    <!-- Website styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- JavaScript loads after the HTML is parsed -->
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content" data-i18n="access.skip">Skip to main content</a>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main navigation" data-i18n-aria-label="access.nav">
+
+            <!-- Website logo -->
+            <a href="index.html" class="logo" aria-label="Matej ZV home" data-i18n-aria-label="access.home">
+                Matej <span>ZV</span>
+            </a>
+
+            <ul class="nav-links" id="primary-navigation">
+                <li><a href="index.html" aria-current="page" data-i18n="nav.home">Home</a></li>
+                <li><a href="projects.html" data-i18n="nav.projects">Projects</a></li>
+                <li><a href="background.html" data-i18n="nav.background">Background</a></li>
+                <li class="mobile-contact"><a href="contact.html" data-i18n="nav.contact">Contact Me</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <div class="settings-container">
+                    <button id="settings-toggle" class="settings-toggle" type="button" aria-expanded="false" aria-controls="settings-panel" hidden>
+                        <svg class="settings-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 3-.5 3-2 1.2L3.7 6 1.8 9.3l2.3 2v2.4l-2.3 2L3.7 19l2.8-1.2 2 1.2.5 3h4l.5-3 2-1.2 2.8 1.2 1.9-3.3-2.3-2v-2.4l2.3-2L18.3 6l-2.8 1.2-2-1.2-.5-3Z"/><circle cx="11" cy="12.5" r="3"/></svg>
+                        <span data-i18n="settings.title">Settings</span>
+                    </button>
+                    <div id="settings-panel" class="settings-panel" role="group" aria-label="Display settings" hidden data-i18n-aria-label="settings.group">
+                        <label class="theme-control" for="theme-choice" hidden>
+                            <span data-i18n="settings.theme">Theme</span>
+                            <select id="theme-choice" name="theme-choice" aria-label="Theme" data-i18n-aria-label="settings.theme">
+                                <option value="dark" data-i18n="settings.dark">Dark</option>
+                                <option value="light" data-i18n="settings.light">Light</option>
+                            </select>
+                        </label>
+                        <fieldset class="language-control" hidden>
+                            <legend data-i18n="settings.language">Language</legend>
+                            <div class="language-options">
+                                <button type="button" data-language="en" aria-pressed="true" lang="en"><span aria-hidden="true">🇬🇧</span> English <span class="language-check" aria-hidden="true">✓</span></button>
+                                <button type="button" data-language="sl" aria-pressed="false" lang="sl"><span aria-hidden="true">🇸🇮</span> Slovenščina <span class="language-check" aria-hidden="true">✓</span></button>
+                                <button type="button" data-language="de" aria-pressed="false" lang="de"><span aria-hidden="true">🇩🇪</span> Deutsch <span class="language-check" aria-hidden="true">✓</span></button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <a class="nav-contact btn btn-primary" href="contact.html" data-i18n="nav.contact">Contact Me</a>
+                <!-- Mobile menu button -->
+                <button
+                    class="menu-toggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-controls="primary-navigation"
+                    aria-expanded="false"
+                 data-i18n-aria-label="access.menuOpen">
+                    ☰
+                </button>
+            </div>
+
+
+        </nav>
+    </header>
+
+    <main id="main-content" class="home-page" tabindex="-1">
+        
+<section tabindex="-1" id="home" class="hero">
+
+    <!-- Introduction -->
+    <div class="hero-content">
+
+        <p class="hero-label" data-i18n="home.hello">
+            HELLO, I'M MATEJ
+        </p>
+
+        <h1 data-i18n="home.role">
+            Aspiring Software Developer
+        </h1>
+
+        <p class="hero-subtitle" data-i18n="home.study">
+            Informatics Engineering Student
+        </p>
+
+        <p class="hero-description" data-i18n="home.intro">
+            I'm studying Informatics Engineering at Academia Maribor,
+            building practical software projects and expanding my
+            development skills.
+        </p>
+
+    </div>
+
+    <!-- Decorative code editor -->
+    <div class="hero-visual" aria-hidden="true">
+
+        <div class="code-card">
+
+            <div class="code-card-header">
+                <div class="code-card-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <span class="code-filename">
+                    developer.js
+                </span>
+            </div>
+
+            <pre class="code-block"><code><span class="syntax-comment">// Building the future</span>
+<span class="syntax-keyword">const</span> <span class="syntax-variable">developer</span> = {
+  <span class="syntax-property">passion</span>: <span class="syntax-string">"coding"</span>,
+  <span class="syntax-property">focus</span>: <span class="syntax-string">"learning"</span>,
+  <span class="syntax-property">mindset</span>: <span class="syntax-string">"growth"</span>
+};</code></pre>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        <section tabindex="-1" id="about" class="about-section" aria-labelledby="about-heading">
+            <div class="about-biography">
+                <div class="about-heading">
+                <p class="section-label" data-i18n="home.aboutLabel">GET TO KNOW ME</p>
+                <h2 id="about-heading" data-i18n="home.about">About Me</h2>
+            </div>
+                <div class="about-content">
+
+                    <p data-i18n="home.bio1">
+                    I've always been curious about how technology works, especially the software behind 
+                    the applications we use every day. That curiosity is what drew me toward programming.
+                    </p>
+
+                    <p data-i18n="home.bio2">
+                    What I enjoy most is figuring things out, experimenting with different approaches, 
+                    and seeing an idea gradually turn into something that works. I like understanding the 
+                    reasoning behind a solution rather than simply getting the code to run.
+                    </p>
+
+                    <p data-i18n="home.bio3">
+                    I'm still exploring different areas of software development, working on my own projects,
+                     and discovering what interests me most along the way.
+                    </p>
+
+                </div>
+                <a class="background-text-link" href="background.html"><span data-i18n="home.explore">Explore My Background</span></a>
+            </div>
+        </section>
+
+
+        <section class="closing-cta" aria-labelledby="closing-heading">
+            <div>
+                <h2 id="closing-heading" data-i18n="home.cta">Have a question or an idea?</h2>
+                <p data-i18n="home.ctaText">I'd be glad to hear from you.</p>
+            </div>
+            <a class="btn btn-primary" href="contact.html" data-i18n="nav.contact">Contact Me</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="current-year">2026</span> <span data-i18n="footer.rights">Matej ZV. All rights reserved.</span></p>
+    </footer>
+    <!-- Translate parsed English content before deferred interaction scripts run. -->
+    <script>window.portfolioI18n?.apply();</script>
+</body>
+</html>

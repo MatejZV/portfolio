@@ -1,0 +1,1660 @@
+/* Shared design tokens: Warm Espresso / Soft Copper and Cream / Muted Terracotta. */
+:root {
+    color-scheme: dark;
+    --bg-primary: #211D1B;
+    --bg-secondary: #28221F;
+    --bg-card: #302A27;
+    --text-primary: #F5EBE3;
+    --text-secondary: #C8B9AF;
+    --accent: #DFA184;
+    --button-bg: #AA583F;
+    --button-text: #FFFFFF;
+    --button-hover: #944A35;
+    --border-color: #4B403A;
+    --card-shadow: 0 10px 28px rgba(33, 22, 16, 0.12);
+    --code-accent: #DEC8A9;
+    --project-image: #28221F;
+    --tag-bg: #3A322D;
+    --tag-text: #DDC7B7;
+    --success-bg: #333B2B;
+    --success-text: #B8C799;
+    --progress-bg: #423129;
+    --progress-text: #E7B397;
+    --planned-bg: #39312D;
+    --planned-text: #D2BEB1;
+    --icon-bg: #F6EEE6;
+    --badge-border: #80604E;
+    --badge-text: #E7B397;
+    --input-border: #A28B7B;
+    --error-border: #D99789;
+    --error-text: #E9AAA0;
+    --window-dot: #7C6A5E;
+    --window-dot-mid: #A48D78;
+    --window-dot-accent: #C98F70;
+    --header-background: rgba(33, 29, 27, 0.96);
+    --syntax-keyword: #C9A3D8;
+    --syntax-string: #A8D6A8;
+    --syntax-variable: #E8C77E;
+    --syntax-property: #E5A47F;
+    --syntax-comment: #9CA6AD;
+    --syntax-default: #F5EBE3;
+    --header-height: 6rem;
+    --content-width: 100rem;
+    --home-content-width: 82.5rem;
+    --home-gutter: clamp(1.25rem, 3vw, 2rem);
+    --page-gutter: clamp(1rem, 5vw, 6rem);
+    --section-gap: clamp(2.5rem, 4.5vw, 4rem);
+    --card-padding: clamp(1.125rem, 2.5vw, 1.75rem);
+    --card-radius: 16px;
+    --control-radius: 10px;
+    font-size: 100%;
+}
+
+:root[data-theme="light"] {
+    --syntax-keyword: #79508E;
+    --syntax-string: #3B683A;
+    --syntax-variable: #806019;
+    --syntax-property: #994B2E;
+    --syntax-comment: #746961;
+    --syntax-default: #352D29;
+
+    color-scheme: light;
+    --bg-primary: #FAF6F0;
+    --bg-secondary: #F2EAE1;
+    --bg-card: #FFFFFF;
+    --text-primary: #352D29;
+    --text-secondary: #73665F;
+    --accent: #A84F36;
+    --button-bg: #A84F36;
+    --button-hover: #8E402C;
+    --border-color: #E8DED5;
+    --card-shadow: 0 10px 28px rgba(77, 49, 31, 0.05);
+    --code-accent: #7D5B44;
+    --project-image: #F4ECE4;
+    --tag-bg: #F4ECE4;
+    --tag-text: #725245;
+    --success-bg: #EDF0E4;
+    --success-text: #4B6339;
+    --progress-bg: #F5E8DE;
+    --progress-text: #8E452F;
+    --planned-bg: #F3ECE5;
+    --planned-text: #776052;
+    --badge-border: #D7BCAB;
+    --badge-text: #8E452F;
+    --input-border: #8A7467;
+    --error-border: #A13D32;
+    --error-text: #A13D32;
+    --window-dot: #D6C4B4;
+    --window-dot-mid: #C1A58B;
+    --window-dot-accent: #B77B5D;
+    --header-background: rgba(250, 246, 240, 0.96);
+}
+
+/* Respect the system palette even when JavaScript is unavailable. */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) {
+        --syntax-keyword: #79508E;
+        --syntax-string: #3B683A;
+        --syntax-variable: #806019;
+        --syntax-property: #994B2E;
+        --syntax-comment: #746961;
+        --syntax-default: #352D29;
+
+        color-scheme: light;
+        --bg-primary: #FAF6F0;
+        --bg-secondary: #F2EAE1;
+        --bg-card: #FFFFFF;
+        --text-primary: #352D29;
+        --text-secondary: #73665F;
+        --accent: #A84F36;
+        --button-bg: #A84F36;
+        --button-hover: #8E402C;
+        --border-color: #E8DED5;
+        --card-shadow: 0 10px 28px rgba(77, 49, 31, 0.05);
+        --code-accent: #7D5B44;
+        --project-image: #F4ECE4;
+        --tag-bg: #F4ECE4;
+        --tag-text: #725245;
+        --success-bg: #EDF0E4;
+        --success-text: #4B6339;
+        --progress-bg: #F5E8DE;
+        --progress-text: #8E452F;
+        --planned-bg: #F3ECE5;
+        --planned-text: #776052;
+        --badge-border: #D7BCAB;
+        --badge-text: #8E452F;
+        --input-border: #8A7467;
+        --error-border: #A13D32;
+        --error-text: #A13D32;
+        --window-dot: #D6C4B4;
+        --window-dot-mid: #C1A58B;
+        --window-dot-accent: #B77B5D;
+        --header-background: rgba(250, 246, 240, 0.96);
+    }
+}
+
+/* ==========================================
+   2. RESET AND GLOBAL STYLES
+========================================== */
+
+/* Make element sizing predictable */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Enable smooth section navigation */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Set the overall website appearance */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-width: 0;
+    font-size: clamp(1rem, calc(0.95rem + 0.1vw), 1.0625rem);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.7;
+}
+
+/* Inherit link colors */
+a {
+    color: inherit;
+}
+
+/* Provide visible keyboard focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex="-1"]:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* Prevent long text from overflowing */
+h1,
+h2,
+h3,
+p {
+    overflow-wrap: break-word;
+}
+
+/* Add space above anchor destinations */
+section,
+main {
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+}
+
+/* Skip link is hidden until keyboard focus */
+.skip-link {
+    position: absolute;
+    top: -60px;
+    left: 16px;
+    z-index: 100;
+
+    padding: 0.625rem 1rem;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border-radius: 6px;
+}
+
+/* Show skip link when focused */
+.skip-link:focus {
+    top: 12px;
+}
+
+
+/* ==========================================
+   3. HEADER AND NAVIGATION
+========================================== */
+
+/* Website header */
+.site-header {
+    flex-shrink: 0;
+    background-color: var(--header-background);
+    border-bottom: 1px solid var(--border-color);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+
+.site-header.sticky-ready {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+/* Equal outer tracks keep the link group centered across the full navbar. */
+.navbar {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0.75rem clamp(1.25rem, 3vw, 3rem);
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+/* Developer logo */
+.logo {
+    justify-self: start;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Restrained accent on the logo */
+.logo span {
+    color: var(--accent);
+}
+
+/* Desktop navigation links */
+.nav-links {
+    justify-self: center;
+    min-width: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(0.125rem, 0.7vw, 0.625rem);
+    list-style: none;
+}
+
+/* Individual navigation links */
+.nav-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.25rem 0.5rem;
+    border-bottom: 2px solid transparent;
+    border-radius: 6px 6px 0 0;
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.nav-links a[aria-current="page"] {
+    color: var(--accent);
+    border-bottom-color: currentColor;
+    background-color: var(--bg-secondary);
+    font-weight: 600;
+}
+
+/* Link hover effect */
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.header-actions {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    max-width: 100%;
+    min-width: 0;
+    align-items: center;
+    gap: 0.75rem;
+    justify-self: end;
+}
+
+.mobile-contact {
+    display: none;
+}
+
+.nav-contact {
+    white-space: nowrap;
+}
+
+.settings-icon {
+    flex: 0 0 18px;
+}
+
+.settings-container {
+    position: relative;
+}
+
+.settings-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--control-radius);
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 0.875rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.settings-toggle:hover,
+.settings-toggle[aria-expanded="true"] {
+    border-color: var(--accent);
+}
+
+.settings-panel {
+    position: absolute;
+    inset-inline-end: 0;
+    top: calc(100% + 0.5rem);
+    z-index: 60;
+    display: grid;
+    gap: 1rem;
+    width: min(18rem, calc(100vw - 2rem));
+    max-height: 65vh;
+    max-height: 65dvh;
+    overflow-y: auto;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background-color: var(--bg-card);
+    box-shadow: var(--card-shadow);
+}
+
+.settings-toggle[hidden],
+.settings-panel[hidden] {
+    display: none;
+}
+
+.theme-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    min-width: 0;
+    min-height: 44px;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+    font-weight: 600;
+}
+
+.theme-control[hidden] {
+    display: none;
+}
+
+.theme-control select {
+    min-height: 44px;
+    min-width: 6.25rem;
+    max-width: 100%;
+    padding: 0.5rem 0.375rem;
+    border: 1px solid var(--input-border);
+    border-radius: var(--control-radius);
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    font: inherit;
+    cursor: pointer;
+}
+
+/* Allow grid and flex content to shrink without hiding overflowing content. */
+.hero-content,
+.hero-visual,
+.about-content {
+    min-width: 0;
+}
+
+/* Hide mobile menu button on desktop */
+.menu-toggle {
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    background: transparent;
+    border: none;
+
+    color: var(--text-primary);
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+
+/* ==========================================
+   4. SHARED LAYOUT
+========================================== */
+
+/* Main content container */
+main {
+    flex: 1 0 auto;
+    width: calc(100% - 2 * var(--page-gutter));
+    min-width: 0;
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+}
+
+/* Home has one cohesive 1320px default cap, independent of the full-width navbar. */
+.home-page {
+    width: 100%;
+    max-width: var(--home-content-width);
+    padding-inline: var(--home-gutter);
+}
+
+.home-page .hero {
+    gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.home-page .hero-content {
+    width: 100%;
+    max-width: 36rem;
+    justify-self: start;
+}
+
+.home-page .hero-visual {
+    justify-content: center;
+}
+
+.home-page .code-card {
+    max-width: 36rem;
+}
+
+.home-page .about-section {
+    max-width: 50rem;
+}
+
+.about-biography {
+    min-width: 0;
+}
+
+.home-page .about-content {
+    display: block;
+    max-width: 70ch;
+}
+
+.home-page .about-content p + p {
+    margin-top: 1.25rem;
+}
+
+.background-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    margin-top: 1rem;
+    color: var(--accent);
+    text-underline-offset: 4px;
+}
+
+.home-page .closing-cta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: clamp(1.5rem, 2.5vw, 2rem);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    background-color: var(--bg-card);
+}
+
+@media (min-width: 901px) {
+    .home-page .hero h1 {
+        max-width: 18ch;
+    }
+}
+
+@media (max-width: 900px) {
+    .home-page .hero-visual {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-page .closing-cta {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.25rem;
+    }
+
+    .home-page .closing-cta .btn {
+        justify-self: start;
+        min-height: 44px;
+    }
+}
+
+/* Space between sections */
+main > section {
+    margin-bottom: var(--section-gap);
+}
+
+/* Shared section headings */
+main h2 {
+    font-size: clamp(1.5rem, calc(1.2rem + 1vw), 2rem);
+    line-height: 1.3;
+    margin-bottom: 1rem;
+}
+
+/* Shared small section labels */
+.section-label {
+    color: var(--accent);
+    font-size: 0.8125rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+}
+
+/* Shared section descriptions */
+.section-description {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 65ch;
+}
+
+
+/* Shared page hierarchy; content keeps the same cards and readable widths. */
+.detail-page h1 {
+    font-size: clamp(2rem, calc(1.4rem + 2vw), 3rem);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.25rem;
+}
+
+.detail-page > section {
+    margin-bottom: var(--section-gap);
+}
+
+.detail-page {
+    padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+/* The page shell supplies viewport height; the last section adds no trailing gap. */
+main > section:last-child {
+    margin-bottom: 0;
+}
+
+.background-page > section {
+    padding-block: 0;
+}
+
+.page-intro {
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.closing-cta p {
+    color: var(--text-secondary);
+}
+
+/* ==========================================
+   5. HERO SECTION
+========================================== */
+
+/* Two-column hero layout */
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3rem);
+
+    min-height: auto;
+    padding: clamp(1.5rem, 3vw, 2.75rem) 0;
+}
+
+/* Small introduction text */
+.hero-label {
+    color: var(--accent);
+    font-size: 0.8125rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 1.25rem;
+}
+
+/* Main headline: short, prominent, and readable. */
+.hero h1 {
+    font-size: clamp(2.5rem, calc(1.4rem + 2.5vw), 3.5rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+    margin-bottom: 0;
+}
+
+/* Secondary role, visually distinct from the main headline. */
+.hero-subtitle {
+    color: var(--accent);
+    font-size: clamp(1.125rem, 1.7vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.4;
+    margin-top: 1rem;
+}
+
+/* One concise introduction; no buttons beneath it. */
+.hero-description {
+    max-width: 52ch;
+    color: var(--text-secondary);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    margin-top: 1.375rem;
+}
+
+/* Shared button styling */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.8125rem 1.375rem;
+    border-radius: var(--control-radius);
+
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease;
+}
+
+/* Primary copper/terracotta action */
+.btn-primary {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 1px solid var(--button-bg);
+}
+
+/* Primary button hover */
+.btn-primary:hover {
+    background-color: var(--button-hover);
+}
+
+
+/* ==========================================
+   6. HERO CODE CARD
+========================================== */
+
+/* Position the decorative card */
+.hero-visual {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 24rem;
+}
+
+/* Decorative code editor */
+.code-card {
+    position: relative;
+    width: 100%;
+    max-width: 40rem;
+
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    background-color: var(--bg-card);
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+
+    box-shadow: var(--card-shadow);
+    font-family: monospace;
+}
+
+/* Decorative editor: explicit syntax tokens, never runtime text manipulation. */
+.code-card-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.code-card-dots {
+    display: flex;
+    gap: 0.4375rem;
+}
+
+.code-card-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--window-dot);
+}
+
+.code-card-dots span:nth-child(2) { background-color: var(--window-dot-mid); }
+.code-card-dots span:last-child { background-color: var(--window-dot-accent); }
+
+.code-filename {
+    color: var(--syntax-comment);
+    font-size: 0.8125rem;
+}
+
+.code-block {
+    color: var(--syntax-default);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: clamp(0.9375rem, 1vw, 1.125rem);
+    line-height: 1.85;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    tab-size: 2;
+}
+
+.code-block code { font: inherit; }
+.syntax-keyword { color: var(--syntax-keyword); }
+.syntax-string { color: var(--syntax-string); }
+.syntax-variable { color: var(--syntax-variable); }
+.syntax-property { color: var(--syntax-property); }
+.syntax-comment { color: var(--syntax-comment); }
+
+
+/* ==========================================
+   7. PROJECTS SECTION
+========================================== */
+
+/* Projects section spacing */
+.projects-section {
+    padding: 1.25rem 0;
+}
+
+/* Two balanced project columns, stacking on mobile. */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: clamp(1.125rem, 2.5vw, 1.75rem);
+}
+
+/* Equal-height cards stretch within each responsive grid row. */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+
+    transition:
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+/* Project card hover effect */
+.project-card:hover {
+    box-shadow: var(--card-shadow);
+    border-color: var(--accent);
+}
+
+/* Project image placeholder */
+.project-image {
+    flex-shrink: 0;
+    position: relative;
+    height: 9rem;
+    background-color: var(--project-image);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Show the whole screenshot without stretching or cropping its interface. */
+.project-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Explicitly preserve hidden fallback elements regardless of display styles. */
+.project-image [hidden] {
+    display: none;
+}
+
+/* Decorative project icon */
+.project-image span {
+    font-size: 3rem;
+}
+
+/* Project card content */
+.project-content {
+    padding: var(--card-padding);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Project title */
+.project-content h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+}
+
+/* Project description */
+.project-content p {
+    max-width: 70ch;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Technology labels container */
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0;
+    margin-top: auto;
+    padding-top: 0.5rem;
+}
+
+/* Technology label */
+.project-tech span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+
+    padding: 0.375rem 0.625rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+}
+
+/* Links wrap instead of overflowing on small screens or at high zoom. */
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.125rem;
+}
+
+/* Optional project link */
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    overflow-wrap: anywhere;
+    color: var(--accent);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Project link hover */
+.project-link:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================================
+   8. PROJECT STATUS BADGES
+========================================== */
+
+/* Shared status badge style */
+.project-status {
+    display: inline-block;
+    padding: 0.3125rem 0.6875rem;
+    border-radius: 999px;
+
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 0.875rem;
+    align-self: flex-start;
+}
+
+/* Completed project */
+.status-completed {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+}
+
+/* In-progress project */
+.status-in-progress {
+    background-color: var(--progress-bg);
+    color: var(--progress-text);
+}
+
+/* Planned project */
+.status-planned {
+    background-color: var(--planned-bg);
+    color: var(--planned-text);
+}
+
+
+/* ==========================================
+   9. ABOUT SECTION
+========================================== */
+
+/* The biography stays in one readable column. */
+.about-section {
+    padding: 1rem 0;
+}
+
+.about-heading {
+    margin-bottom: 1.5rem;
+}
+
+.about-content p {
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin: 0;
+    max-width: 70ch;
+}
+
+
+/* ==========================================
+   10. SKILLS SECTION
+========================================== */
+
+/* Skills section spacing */
+.skills-section {
+    padding: 1.25rem 0;
+}
+
+/* Three-column skill grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.125rem;
+}
+
+/* Static cards keep their names below a shared icon frame. */
+.skill-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    min-width: 0;
+    padding: 1.5rem 1.125rem;
+    text-align: center;
+    overflow-wrap: anywhere;
+
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+}
+
+/* A light backing keeps every original brand color legible. */
+.skill-icon {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    flex: 0 0 72px;
+    background-color: var(--icon-bg);
+    border-radius: 16px;
+}
+
+.skill-icon img {
+    display: block;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+/* Skill name */
+.skill-card h3 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Skill description */
+.skill-card p {
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+}
+
+
+/* Certifications and learning share the same theme-aware card surface. */
+.learning-section,
+.education-section {
+    padding: 1.25rem 0;
+}
+
+.education-detail {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.education-detail > span:first-child {
+    display: block;
+    color: var(--accent);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.learning-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 1.5rem;
+}
+
+.learning-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 1.5rem;
+    padding: var(--card-padding);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+}
+
+.learning-card-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.learning-badge {
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--badge-border);
+    border-radius: 999px;
+    background-color: var(--bg-secondary);
+    color: var(--badge-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.learning-details {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.learning-provider {
+    color: var(--accent);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.learning-card h3 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1.35;
+    margin-bottom: 0.75rem;
+}
+
+.learning-completion {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.learning-certificate {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Compact certificate links retain a 44px keyboard/touch target. */
+.certificate-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    min-height: 44px;
+    padding: 0.25rem 0;
+    border-radius: var(--control-radius);
+    color: var(--accent);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-underline-offset: 3px;
+}
+
+.certificate-link:hover,
+.certificate-link:focus-visible {
+    text-decoration: underline;
+}
+
+.certificate-link:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.certificate-external-icon {
+    flex: 0 0 14px;
+}
+
+/* Scope the compact layout to Certifications; Education keeps its shared card styles. */
+.learning-section .learning-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.learning-section .learning-card {
+    gap: 0.5rem;
+    padding: 1rem;
+}
+
+.learning-section .learning-provider {
+    margin-bottom: 0.25rem;
+}
+
+.learning-section .learning-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.learning-section .learning-certificate {
+    padding-top: 0.25rem;
+    border-top: 0;
+}
+
+@media (max-width: 1000px) {
+    .learning-section .learning-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .learning-section .learning-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .learning-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.125rem;
+    }
+}
+
+
+/* ==========================================
+   11. CONTACT SECTION
+========================================== */
+
+/* Contact section spacing */
+.contact-section {
+    width: 100%;
+    max-width: 42.5rem;
+    margin-inline: auto;
+    padding: 1.25rem 0;
+}
+
+/* Limit form width */
+.contact-container {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 2rem;
+}
+
+/* Form card */
+#contact-form {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: var(--card-padding);
+}
+
+/* Let fields shrink inside the card at narrow widths and high zoom. */
+.form-group,
+.form-group input,
+.form-group textarea {
+    min-width: 0;
+}
+
+/* Make the waiting state clear without reducing text contrast. */
+.contact-submit:disabled {
+    cursor: wait;
+    background-color: var(--button-hover);
+}
+
+/* Individual form field group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.375rem;
+}
+
+/* Form labels */
+.form-group label {
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+/* Text fields and message area */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+
+    /* A stronger boundary makes editable controls easier to identify. */
+    border: 1px solid var(--input-border);
+    border-radius: var(--control-radius);
+
+    font: inherit;
+    transition: border-color 0.2s ease;
+}
+
+/* Allow vertical resizing of the message field */
+.form-group textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+/* Placeholder text */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Focused form field */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--accent);
+}
+
+/* Invalid form field */
+.form-group .input-error {
+    border-color: var(--error-border);
+}
+
+/* Field error message */
+.form-error {
+    color: var(--error-text);
+    font-size: 0.75rem;
+    min-height: 18px;
+}
+
+/* Submit button */
+.contact-submit {
+    border: none;
+}
+
+/* Overall form feedback */
+.form-status {
+    margin-top: 1.125rem;
+    font-size: 0.875rem;
+    min-height: 22px;
+}
+
+/* Successful validation feedback */
+.form-status.success {
+    color: var(--success-text);
+}
+
+/* Failed validation feedback */
+.form-status.error {
+    color: var(--error-text);
+}
+
+/* Explanation below the form */
+.form-note {
+    overflow-wrap: anywhere;
+    margin-top: 0.875rem;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    line-height: 1.6;
+}
+
+
+/* A quiet secondary way to connect beneath the contact form. */
+.contact-social {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.contact-social p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 44px;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--control-radius);
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.social-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ==========================================
+   12. FOOTER
+========================================== */
+
+/* The flexible page shell keeps this footer at the bottom of short pages. */
+.site-footer {
+    flex-shrink: 0;
+    padding: 1.25rem 1rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+
+@media (min-width: 901px) {
+    .project-content h3 {
+        min-height: 2.8em;
+    }
+}
+
+/* ==========================================
+   13. TABLET LAYOUT
+========================================== */
+
+@media (max-width: 900px) {
+    main > section {
+        margin-bottom: var(--section-gap);
+    }
+
+    .hero h1 {
+        font-size: clamp(2.25rem, 4.5vw, 3rem);
+    }
+
+
+    /* Stack hero content */
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        min-height: auto;
+        padding: 2.5rem 0;
+    }
+
+    /* Reduce hero visual height */
+    .hero-visual {
+        min-height: 260px;
+    }
+
+    /* Two skill columns */
+    .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* Use a compact header before links and actions become cramped. */
+@media (max-width: 1000px) {
+    /* Anchor Settings to the full header, not the trigger beside the hamburger. */
+    .settings-container {
+        position: static;
+    }
+
+    .settings-panel {
+        top: 100%;
+        inset-inline-end: 1rem;
+        width: min(18rem, calc(100% - 2rem));
+    }
+
+    .navbar {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .logo {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .header-actions {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .nav-contact {
+        display: none;
+    }
+
+    .mobile-contact {
+        display: block;
+    }
+
+    .nav-links .mobile-contact > a {
+        justify-content: center;
+        background-color: var(--button-bg);
+        color: var(--button-text);
+        border: 1px solid var(--button-bg);
+        border-radius: var(--control-radius);
+    }
+
+    .nav-links .mobile-contact > a:hover {
+        background-color: var(--button-hover);
+        border-color: var(--button-hover);
+    }
+
+    /* Remain usable when JavaScript is unavailable. */
+    .nav-links {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: stretch;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.25rem;
+    }
+
+    .navigation-ready .menu-toggle {
+        display: flex;
+    }
+
+    .navigation-ready .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        inset-inline: 0;
+        width: auto;
+        max-height: 65vh;
+        max-height: 65dvh;
+        overflow-y: auto;
+        padding: 0.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: 0 0 12px 12px;
+        background-color: var(--bg-card);
+        box-shadow: var(--card-shadow);
+    }
+
+    .navigation-ready .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        width: 100%;
+        min-height: 48px;
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/* ==========================================
+   14. MOBILE LAYOUT
+========================================== */
+
+@media (max-width: 600px) {
+
+    /* Reduce main spacing */
+    main {
+        padding: 1.25rem 0;
+    }
+
+    /* Reduce section spacing */
+    main > section {
+        margin-bottom: var(--section-gap);
+    }
+
+    /* Compact hero */
+    .hero {
+        padding: 1.75rem 0;
+    }
+
+    /* Smaller hero heading */
+    .hero h1 {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+        letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+        font-size: 1.0625rem;
+    }
+
+    /* Smaller hero description */
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .section-description {
+        margin-bottom: 1.25rem;
+    }
+
+    .learning-card {
+        gap: 1rem;
+    }
+
+    .learning-certificate {
+        padding-top: 1rem;
+    }
+
+    /* Compact hero decoration */
+    .hero-visual {
+        min-height: 220px;
+    }
+
+    /* One project per row */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Smaller section headings */
+    main h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Compact project cards */
+    .project-content {
+        padding: 1.125rem;
+    }
+
+    /* Two compact skill columns on mobile */
+    .skills-grid {
+        gap: 0.75rem;
+    }
+
+    /* Compact skill cards */
+    .skill-card {
+        padding: 1.125rem;
+    }
+
+    /* Compact contact form */
+    #contact-form {
+        padding: 1.125rem;
+    }
+
+    /* Full-width contact button */
+    .contact-submit {
+        width: 100%;
+    }
+
+}
+
+
+/* The narrowest screens keep controls compact and skills in one column. */
+@media (max-width: 380px) {
+    .header-actions {
+        gap: 8px;
+    }
+
+    .skills-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+
+/* ==========================================
+   15. ACCESSIBILITY
+========================================== */
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+    /* Disable smooth scrolling */
+    html {
+        scroll-behavior: auto;
+    }
+
+    /* Remove animated transitions */
+    .btn,
+    .nav-links a,
+    .project-card,
+    .form-group input,
+    .form-group textarea,
+    .social-link {
+        transition: none;
+    }
+}
+
+/* Native language buttons retain keyboard behavior and wrap naturally at high zoom. */
+.language-control {
+    min-width: 0;
+    border: 0;
+}
+
+.language-control[hidden] {
+    display: none;
+}
+
+.language-control legend {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.9375rem;
+}
+
+.language-options {
+    display: grid;
+    gap: 0.375rem;
+}
+
+.language-options button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    min-width: 0;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--control-radius);
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    font: inherit;
+    overflow-wrap: anywhere;
+    text-align: start;
+    cursor: pointer;
+}
+
+.language-options button[aria-pressed="true"] {
+    border-color: var(--accent);
+    background-color: var(--bg-secondary);
+}
+
+.language-check {
+    margin-inline-start: auto;
+    color: var(--accent);
+    visibility: hidden;
+}
+
+.language-options button[aria-pressed="true"] .language-check {
+    visibility: visible;
+}

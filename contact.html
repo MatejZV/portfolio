@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding and responsive viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page information -->
+    <meta name="description" content="Contact — Matej ZV’s developer portfolio, education, projects, and continued learning." data-i18n-content="meta.contact.description">
+    <meta name="theme-color" content="#211D1B">
+    <link rel="icon" type="image/svg+xml" sizes="any" href="assets/icons/favicon.svg">
+    <title data-i18n="meta.contact.title">Contact | Matej ZV</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contact | Matej ZV" data-i18n-content="meta.contact.title">
+    <meta property="og:description" content="Contact — Matej ZV’s developer portfolio, education, projects, and continued learning." data-i18n-content="meta.contact.description">
+    <meta name="twitter:card" content="summary">
+    <!-- Add a canonical link and og:url once the final public URL is known.
+         Add og:image only when a real share image has been supplied. -->
+
+    <!-- Select the saved/system theme before styles render. -->
+    <script src="js/theme.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/i18n.js"></script>
+
+    <!-- Website styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- JavaScript loads after the HTML is parsed -->
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content" data-i18n="access.skip">Skip to main content</a>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main navigation" data-i18n-aria-label="access.nav">
+
+            <!-- Website logo -->
+            <a href="index.html" class="logo" aria-label="Matej ZV home" data-i18n-aria-label="access.home">
+                Matej <span>ZV</span>
+            </a>
+
+            <ul class="nav-links" id="primary-navigation">
+                <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="projects.html" data-i18n="nav.projects">Projects</a></li>
+                <li><a href="background.html" data-i18n="nav.background">Background</a></li>
+                <li class="mobile-contact"><a href="contact.html" aria-current="page" data-i18n="nav.contact">Contact Me</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <div class="settings-container">
+                    <button id="settings-toggle" class="settings-toggle" type="button" aria-expanded="false" aria-controls="settings-panel" hidden>
+                        <svg class="settings-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 3-.5 3-2 1.2L3.7 6 1.8 9.3l2.3 2v2.4l-2.3 2L3.7 19l2.8-1.2 2 1.2.5 3h4l.5-3 2-1.2 2.8 1.2 1.9-3.3-2.3-2v-2.4l2.3-2L18.3 6l-2.8 1.2-2-1.2-.5-3Z"/><circle cx="11" cy="12.5" r="3"/></svg>
+                        <span data-i18n="settings.title">Settings</span>
+                    </button>
+                    <div id="settings-panel" class="settings-panel" role="group" aria-label="Display settings" hidden data-i18n-aria-label="settings.group">
+                        <label class="theme-control" for="theme-choice" hidden>
+                            <span data-i18n="settings.theme">Theme</span>
+                            <select id="theme-choice" name="theme-choice" aria-label="Theme" data-i18n-aria-label="settings.theme">
+                                <option value="dark" data-i18n="settings.dark">Dark</option>
+                                <option value="light" data-i18n="settings.light">Light</option>
+                            </select>
+                        </label>
+                        <fieldset class="language-control" hidden>
+                            <legend data-i18n="settings.language">Language</legend>
+                            <div class="language-options">
+                                <button type="button" data-language="en" aria-pressed="true" lang="en"><span aria-hidden="true">🇬🇧</span> English <span class="language-check" aria-hidden="true">✓</span></button>
+                                <button type="button" data-language="sl" aria-pressed="false" lang="sl"><span aria-hidden="true">🇸🇮</span> Slovenščina <span class="language-check" aria-hidden="true">✓</span></button>
+                                <button type="button" data-language="de" aria-pressed="false" lang="de"><span aria-hidden="true">🇩🇪</span> Deutsch <span class="language-check" aria-hidden="true">✓</span></button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <a class="nav-contact btn btn-primary" href="contact.html" aria-current="page" data-i18n="nav.contact">Contact Me</a>
+                <!-- Mobile menu button -->
+                <button
+                    class="menu-toggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-controls="primary-navigation"
+                    aria-expanded="false"
+                 data-i18n-aria-label="access.menuOpen">
+                    ☰
+                </button>
+            </div>
+
+
+        </nav>
+    </header>
+
+    <main id="main-content" class="detail-page" tabindex="-1">
+        <section tabindex="-1" id="contact" class="contact-section">
+
+            <p class="section-label" data-i18n="contact.label">
+                GET IN TOUCH
+            </p>
+
+            <h1 data-i18n="contact.heading">Let's Work Together</h1>
+
+            <p class="section-description" data-i18n="contact.intro">
+                Have a question or an idea?
+                Leave a message below.
+            </p>
+
+            <!-- Contact form card -->
+            <div class="contact-container">
+
+                <!--
+                    The action contains the configured public Formspree form ID.
+                    This endpoint is public; never put private API keys here.
+                    JavaScript validates and sends the form without a page reload.
+                -->
+                <form aria-label="Contact" id="contact-form" action="https://formspree.io/f/xzeeqwby" method="post" novalidate data-i18n-aria-label="contact.formLabel">
+
+                    <!-- Name input -->
+                    <div class="form-group">
+
+                        <label for="contact-name" data-i18n="contact.name">
+                            Your Name (required)
+                        </label>
+
+                        <input
+                            type="text"
+                            id="contact-name"
+                            name="name"
+                            placeholder="Your name"
+                            autocomplete="name"
+                            required
+                            minlength="2"
+                            aria-describedby="name-error"
+                         data-i18n-placeholder="contact.namePlaceholder">
+
+                        <small
+                            id="name-error"
+                            class="form-error"
+                        ></small>
+
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-group">
+
+                        <label for="contact-email" data-i18n="contact.email">
+                            Email Address (required)
+                        </label>
+
+                        <input
+                            type="email"
+                            id="contact-email"
+                            name="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                            aria-describedby="email-error"
+                        >
+
+                        <small
+                            id="email-error"
+                            class="form-error"
+                        ></small>
+
+                    </div>
+
+                    <!-- Message input -->
+                    <div class="form-group">
+
+                        <label for="contact-message" data-i18n="contact.message">
+                            Your Message (required)
+                        </label>
+
+                        <textarea
+                            id="contact-message"
+                            name="message"
+                            rows="6"
+                            placeholder="Tell me about your idea..."
+                            required
+                            minlength="10"
+                            aria-describedby="message-error"
+                         data-i18n-placeholder="contact.messagePlaceholder"></textarea>
+
+                        <small
+                            id="message-error"
+                            class="form-error"
+                        ></small>
+
+                    </div>
+
+                    
+                    <!-- ========================================
+                        CONTACT FORM SUBMIT BUTTON
+                    ======================================== -->
+
+                    <!--
+                        JavaScript will disable this button while
+                        the message is being sent.
+                    -->
+                    <button
+                        type="submit"
+                        id="contact-submit"
+                        class="btn btn-primary contact-submit"
+                     data-i18n="contact.send">
+                        Send Message
+                    </button>
+
+                    <!--
+                        This status message tells visitors whether
+                        their message was sent successfully.
+                    -->
+                    <p
+                        id="form-status"
+                        class="form-status"
+                        role="status"
+                        aria-live="polite"
+                        aria-atomic="true"
+                    ></p>
+
+                    <!-- A configured endpoint does not establish inbox delivery. -->
+                    <p class="form-note" data-i18n="contact.note">
+                        Messages are submitted through Formspree. 
+                    </p>
+
+                    <noscript>
+                        <p class="form-note" data-i18n="contact.noScript">Please enable JavaScript to send this form.</p>
+                    </noscript>
+
+                </form>
+
+            </div>
+
+                <!-- Social links -->
+            <div class="contact-social">
+
+                <p data-i18n="contact.github">
+                    You can also find my projects and code on GitHub.
+                </p>
+
+                <a
+                class="social-link"
+                href="https://github.com/MatejZV"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <svg
+                    class="social-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    focusable="false"
+                >
+                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.95.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18A11.08 11.08 0 0 1 12 6.3c.98 0 1.97.13 2.89.39 2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.68 5.4-5.24 5.69.41.35.77 1.04.77 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.21.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+                </svg>
+
+                <span>GitHub</span>
+                <span aria-hidden="true">↗</span>
+            </a>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="current-year">2026</span> <span data-i18n="footer.rights">Matej ZV. All rights reserved.</span></p>
+    </footer>
+    <!-- Translate parsed English content before deferred interaction scripts run. -->
+    <script>window.portfolioI18n?.apply();</script>
+</body>
+</html>
